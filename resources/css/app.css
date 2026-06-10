@@ -1,0 +1,1106 @@
+:root {
+    --olive-dark: #5c6b18;
+    --olive: #6d7c1e;
+    --olive-mid: #8a9a28;
+    --olive-light: #a8c03a;
+    --lime: #c5d84a;
+    --teal: #0d9a8c;
+    --teal-dark: #0a7a6f;
+    --teal-deep: #0d4f48;
+    --yellow: #f5c518;
+    --yellow-bright: #ffd54f;
+    --gold-deep: #6b4f0a;
+    --gold-dark: #8b6914;
+    --gold: #b8860b;
+    --gold-mid: #c9a227;
+    --gold-light: #d4af37;
+    --gold-pale: #e8d9a8;
+    --gold-cream: #f2e8c4;
+    --cyan-bg: #b5dce6;
+    --white: #ffffff;
+    --text-dark: #1a1a1a;
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    --radius-lg: 20px;
+    --radius-md: 12px;
+    --radius-sm: 8px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
+
+.container {
+    width: 92%;
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: inherit;
+}
+
+/* ─── HERO ─── */
+.hero {
+    position: relative;
+    background: linear-gradient(
+        165deg,
+        var(--olive-dark) 0%,
+        var(--olive) 25%,
+        var(--olive-mid) 55%,
+        var(--olive-light) 80%,
+        #b8d04a 100%
+    );
+    color: var(--white);
+    padding: 12px 0 0;
+    overflow: hidden;
+}
+
+.site-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto 8px;
+    text-decoration: none;
+    color: var(--white);
+    background: transparent;
+}
+
+.site-brand-logo {
+    display: block;
+    width: auto;
+    max-width: min(320px, 55vw);
+    max-height: 80px;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+    flex-shrink: 0;
+}
+
+.site-brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: clamp(0.85rem, 1.6vw, 1.05rem);
+    font-weight: 500;
+    line-height: 1.35;
+}
+
+.hero-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    margin-bottom: 8px;
+}
+
+.hero-top-bar .site-brand {
+    margin: 0;
+    justify-content: flex-start;
+}
+
+.site-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.site-nav-link {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    transition: background 0.2s;
+}
+
+.site-nav-link:hover,
+.site-nav-link.is-active {
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.site-nav--hero {
+    margin-left: auto;
+}
+
+.hero-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    padding-bottom: 50px;
+    margin-top: 0;
+    flex-wrap: wrap;
+}
+
+.hero-left {
+    flex: 0 1 auto;
+}
+
+.hero-right {
+    flex: 0 1 auto;
+    max-width: 520px;
+}
+
+.hero-photo-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.hero-photo {
+    width: 100%;
+    max-width: 520px;
+    object-fit: contain;
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 5vw, 3.75rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 12px;
+}
+
+.hero-subtitle {
+    font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+    font-weight: 400;
+    line-height: 1.6;
+    opacity: 0.95;
+    margin-bottom: 28px;
+}
+
+.satuhaji-box {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    background: rgba(13, 79, 72, 0.88);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px;
+    max-width: 520px;
+    backdrop-filter: blur(4px);
+}
+
+.satuhaji-logo {
+    width: 88px;
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+.satuhaji-content h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
+}
+
+.satuhaji-content p {
+    font-size: 0.82rem;
+    line-height: 1.55;
+    opacity: 0.92;
+    margin-bottom: 14px;
+}
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 999px;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.btn--sm {
+    background: var(--teal);
+    color: var(--white);
+    font-size: 0.8rem;
+    padding: 8px 22px;
+}
+
+.hero-slope {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 140px;
+    background: var(--white);
+    clip-path: polygon(0 55%, 100% 0, 100% 100%, 0 100%);
+    pointer-events: none;
+}
+
+/* ─── BERANDA: KUNING EMAS GELAP ─── */
+.page-home {
+    background: var(--gold-pale);
+}
+
+.page-home .hero {
+    background: linear-gradient(
+        165deg,
+        var(--gold-deep) 0%,
+        var(--gold-dark) 22%,
+        #9a7b0a 48%,
+        var(--gold) 72%,
+        var(--gold-mid) 100%
+    );
+}
+
+.page-home .hero-slope {
+    background: var(--gold-pale);
+}
+
+.page-home .mall-section {
+    background: var(--gold-pale);
+}
+
+.page-home .home-news-section {
+    background: var(--gold-cream);
+}
+
+.page-home .section-heading-title {
+    color: var(--gold-deep);
+}
+
+.page-home .btn--outline {
+    border-color: var(--gold-dark);
+    color: var(--gold-deep);
+}
+
+.page-home .btn--outline:hover {
+    background: var(--gold-dark);
+    color: var(--white);
+}
+
+.page-home .cta-section {
+    background: var(--gold-cream);
+}
+
+.page-home .location-section {
+    background: linear-gradient(
+        180deg,
+        var(--gold-mid) 0%,
+        var(--gold-dark) 55%,
+        var(--gold-deep) 100%
+    );
+}
+
+/* ─── MALL LAYANAN ─── */
+.mall-section {
+    background: var(--white);
+    padding: 0 0 72px;
+    margin-top: -1px;
+    position: relative;
+    z-index: 5;
+}
+
+.mall-title {
+    text-align: center;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    color: #000;
+    margin-top: -72px;
+    margin-bottom: 48px;
+    position: relative;
+    z-index: 6;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.service-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 36px 24px 32px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+
+.service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.service-card img {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+}
+
+.service-card h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+/* ─── HOME BERITA ─── */
+/* ─── DATA JEMAAH HAJI ─── */
+.hajj-stats-section {
+    background: linear-gradient(180deg, var(--gold-cream) 0%, var(--gold-pale) 100%);
+    padding: 56px 0 72px;
+}
+
+.hajj-stats-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.hajj-stats-title {
+    font-size: clamp(1.35rem, 3vw, 1.85rem);
+    font-weight: 700;
+    color: var(--gold-deep);
+    line-height: 1.35;
+}
+
+.hajj-stats-title span {
+    display: block;
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
+    font-weight: 600;
+    color: var(--gold-dark);
+    margin-top: 6px;
+}
+
+.hajj-stats-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+.hajj-stat-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    border-top: 4px solid var(--gold);
+}
+
+.hajj-stat-card--total {
+    border-top-color: var(--teal);
+}
+
+.hajj-stat-card--wait {
+    border-top-color: var(--gold-dark);
+}
+
+.hajj-stat-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.hajj-stat-value {
+    display: block;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    color: var(--gold-deep);
+}
+
+.hajj-stat-card--total .hajj-stat-value {
+    color: var(--teal-dark);
+}
+
+.hajj-stat-value--text {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+}
+
+.hajj-charts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.hajj-chart-panel {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow);
+}
+
+.hajj-chart-panel--wide {
+    grid-column: 1 / -1;
+}
+
+.hajj-chart-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold-deep);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--gold-light);
+}
+
+.hajj-chart-wrap {
+    position: relative;
+    height: 280px;
+}
+
+.hajj-chart-wrap--doughnut {
+    height: 260px;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+.home-news-section {
+    background: #f4f8f5;
+    padding: 56px 0 64px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.section-heading-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    color: var(--olive-dark);
+}
+
+.btn--outline {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 999px;
+    border: 2px solid var(--teal);
+    color: var(--teal-dark);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn--outline:hover {
+    background: var(--teal);
+    color: var(--white);
+}
+
+/* ─── CTA ─── */
+.cta-section {
+    background: var(--white);
+    padding: 0 0 64px;
+}
+
+.cta-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 36px 48px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(90deg, var(--yellow) 0%, #e8c820 35%, #4ec4b8 70%, var(--teal) 100%);
+    box-shadow: var(--shadow);
+}
+
+.cta-title {
+    color: var(--white);
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.btn--cta {
+    background: var(--teal-dark);
+    color: var(--white);
+    padding: 14px 36px;
+    font-size: 1rem;
+    flex-shrink: 0;
+    border-radius: var(--radius-md);
+}
+
+/* ─── LOKASI ─── */
+.location-section {
+    background: var(--cyan-bg);
+    padding: 48px 0 72px;
+}
+
+.location-panel {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 36px 32px 32px;
+    box-shadow: var(--shadow);
+}
+
+.location-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-bottom: 28px;
+    color: var(--text-dark);
+}
+
+.location-heading-line {
+    display: block;
+    width: 48px;
+    height: 4px;
+    background: var(--teal);
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+.location-grid {
+    display: grid;
+    grid-template-columns: minmax(280px, 380px) 1fr;
+    gap: 20px;
+    align-items: stretch;
+}
+
+.contact-box {
+    background: var(--teal-dark);
+    border-radius: var(--radius-lg);
+    padding: 24px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.contact-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 16px 12px;
+    color: var(--white);
+}
+
+.contact-item + .contact-item {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.contact-icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    color: var(--white);
+}
+
+.contact-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.contact-item strong {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.contact-item p {
+    font-size: 0.82rem;
+    line-height: 1.5;
+    opacity: 0.95;
+}
+
+.contact-item a {
+    color: var(--white);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.map-wrap {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    min-height: 380px;
+    background: #e8e8e8;
+}
+
+.map-wrap iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.btn--map {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    z-index: 2;
+    background: var(--teal);
+    color: var(--white);
+    padding: 10px 24px;
+    font-size: 0.9rem;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 992px) {
+    .hajj-stats-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .hajj-charts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .news-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-wrapper {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-bottom: 80px;
+    }
+
+    .hero-right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .satuhaji-box {
+        text-align: left;
+        max-width: 100%;
+    }
+
+    .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .location-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .map-wrap {
+        min-height: 320px;
+    }
+}
+
+/* ─── PAGE TOP (inner pages) ─── */
+.page-top {
+    position: relative;
+    background: linear-gradient(
+        165deg,
+        var(--olive-dark) 0%,
+        var(--olive) 30%,
+        var(--olive-mid) 60%,
+        var(--olive-light) 85%,
+        #b8d04a 100%
+    );
+    color: var(--white);
+    padding: 16px 0 0;
+    overflow: hidden;
+}
+
+.page-top-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+}
+
+.page-top .site-brand {
+    margin: 0;
+    justify-content: flex-start;
+}
+
+.site-brand--compact .site-brand-logo {
+    max-width: min(260px, 45vw);
+    max-height: 64px;
+}
+
+.page-top-heading {
+    text-align: center;
+    padding: 20px 0 56px;
+}
+
+.page-top-heading h1 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.page-top-heading p {
+    font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+    opacity: 0.92;
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+.page-top-slope {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 48px;
+    background: var(--white);
+    clip-path: polygon(0 55%, 100% 0, 100% 100%, 0 100%);
+    pointer-events: none;
+}
+
+/* ─── BERITA ─── */
+.news-section {
+    background: var(--white);
+    padding: 48px 0 72px;
+    margin-top: -1px;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.news-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.news-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.news-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+}
+
+.news-card-image {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    background: linear-gradient(135deg, var(--olive-mid), var(--teal));
+    overflow: hidden;
+}
+
+.news-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.news-card-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.news-card-placeholder svg {
+    width: 48px;
+    height: 48px;
+}
+
+.news-card-date {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: var(--teal-dark);
+    color: var(--white);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+}
+
+.news-card-body {
+    padding: 20px;
+}
+
+.news-card-body h2,
+.news-card-body h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+}
+
+.news-card-body p {
+    font-size: 0.85rem;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.news-card-more {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--teal);
+}
+
+.news-empty {
+    text-align: center;
+    padding: 48px 20px;
+    color: #666;
+}
+
+.news-pagination {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.news-pager {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.news-pager-btn {
+    padding: 10px 18px;
+    border-radius: var(--radius-sm);
+    background: var(--teal);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.news-pager-btn.is-disabled {
+    background: #ccc;
+    color: #888;
+    pointer-events: none;
+}
+
+.news-pager-info {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.news-article-section {
+    background: var(--white);
+    padding: 40px 0 72px;
+}
+
+.container--narrow {
+    max-width: 800px;
+}
+
+.news-back {
+    display: inline-block;
+    color: var(--teal);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+}
+
+.news-back:hover {
+    text-decoration: underline;
+}
+
+.news-article {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: 32px;
+    border-top: 4px solid var(--teal);
+}
+
+.news-article-header time {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: var(--teal-dark);
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.news-article-header h1 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1.25;
+    margin-bottom: 12px;
+    color: var(--text-dark);
+}
+
+.news-article-excerpt {
+    font-size: 1.05rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+.news-article-image {
+    margin: 24px 0;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.news-article-image img {
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+}
+
+.news-article-content {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #333;
+}
+
+.news-related {
+    margin-top: 48px;
+}
+
+.news-related h2 {
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+    color: var(--olive-dark);
+}
+
+.news-related-grid {
+    display: grid;
+    gap: 12px;
+}
+
+.news-related-card {
+    display: block;
+    padding: 16px 20px;
+    background: linear-gradient(90deg, rgba(109, 124, 30, 0.08), rgba(13, 154, 140, 0.08));
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--teal);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s;
+}
+
+.news-related-card:hover {
+    background: linear-gradient(90deg, rgba(109, 124, 30, 0.14), rgba(13, 154, 140, 0.14));
+}
+
+.news-related-date {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--teal-dark);
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.news-related-title {
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.admin-access-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 100;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 18px;
+    background: var(--teal-dark);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 999px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    transition: background 0.2s, transform 0.2s;
+}
+
+.admin-access-btn svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.admin-access-btn:hover {
+    background: var(--teal);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 640px) {
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-top-bar,
+    .page-top-inner {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .site-nav--hero {
+        margin-left: 0;
+    }
+
+    .news-article {
+        padding: 20px;
+    }
+
+    .admin-access-btn {
+        bottom: 16px;
+        right: 16px;
+        padding: 10px 14px;
+        font-size: 0.8rem;
+    }
+
+    .service-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-box {
+        flex-direction: column;
+        text-align: center;
+        padding: 28px 24px;
+    }
+
+    .satuhaji-box {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .location-panel {
+        padding: 24px 18px;
+    }
+}
