@@ -6,13 +6,19 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HajjStatController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\OfficeProfileController as AdminOfficeProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\OfficeProfileController;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
+Route::get('/profil', [OfficeProfileController::class, 'index'])->name('profil');
 Route::get('/berita', [NewsController::class, 'index'])->name('berita.index');
 Route::get('/berita/{slug}', [NewsController::class, 'show'])->name('berita.show');
+Route::get('/galeri', [GalleryController::class, 'index'])->name('galeri.index');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('guest')->group(function () {
@@ -29,6 +35,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
             ->parameters(['layanan' => 'layanan'])
             ->except(['show']);
         Route::resource('berita', AdminNewsController::class)->except(['show']);
+        Route::resource('profil', AdminOfficeProfileController::class)->except(['show']);
+        Route::resource('pejabat', App\Http\Controllers\Admin\OfficialController::class)
+            ->parameters(['pejabat' => 'official'])
+            ->except(['show']);
+        Route::resource('galeri', AdminGalleryController::class)->except(['show']);
         Route::get('data-jemaah', [HajjStatController::class, 'edit'])->name('hajj-stats.edit');
         Route::put('data-jemaah', [HajjStatController::class, 'update'])->name('hajj-stats.update');
     });

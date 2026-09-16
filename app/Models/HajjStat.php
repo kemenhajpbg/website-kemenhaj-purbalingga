@@ -20,7 +20,7 @@ class HajjStat extends Model
 
     public const EDUCATIONS = ['SD', 'SMP', 'SMA', 'S1', 'S2', 'S3', 'Lain-Lain'];
 
-    public const AGE_GROUPS = ['12-20', '21-30', '31-40', '51-60', '61-70', '71-80', '81-90'];
+    public const AGE_GROUPS = ['12-20', '21-30', '31-40', '41-50', '51-60', '61-70', '71-80', '81-90'];
 
     protected $fillable = [
         'data_date',

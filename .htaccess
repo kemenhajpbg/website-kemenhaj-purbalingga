@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Keamanan: Blokir akses langsung ke file konfigurasi dan sensitif
+    RewriteRule ^(\.env|\.git|composer\.(json|lock)|package\.(json|lock)|vite\.config\.js|artisan) - [F,L,NC]
+
+    # Teruskan semua request ke direktori public/
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

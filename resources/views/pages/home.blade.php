@@ -19,7 +19,10 @@
             </a>
             <nav class="site-nav site-nav--hero" aria-label="Navigasi utama">
                 <a href="{{ route('home') }}" class="site-nav-link is-active">Beranda</a>
+                <a href="{{ route('profil') }}" class="site-nav-link">Profil</a>
                 <a href="{{ route('berita.index') }}" class="site-nav-link">Berita</a>
+                <a href="{{ route('galeri.index') }}" class="site-nav-link">Galeri</a>
+                <a href="https://haji.go.id/regulasi" target="_blank" rel="noopener noreferrer" class="site-nav-link">Regulasi</a>
             </nav>
         </div>
 

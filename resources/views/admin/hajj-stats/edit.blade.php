@@ -40,7 +40,7 @@
 
         <div class="admin-card">
             <h2>Jumlah Pendaftar Per Bulan</h2>
-            <div class="form-row" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="form-row--3cols">
                 @foreach (App\Models\HajjStat::MONTHS as $month)
                     <div class="form-group">
                         <label for="month_{{ $month }}">{{ $month }}</label>
@@ -66,7 +66,7 @@
 
         <div class="admin-card">
             <h2>Pengelompokan Pekerjaan</h2>
-            <div class="form-row" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="form-row--3cols">
                 @foreach (App\Models\HajjStat::OCCUPATIONS as $occupation)
                     <div class="form-group">
                         <label for="occ_{{ Str::slug($occupation) }}">{{ $occupation }}</label>
@@ -92,7 +92,7 @@
 
         <div class="admin-card">
             <h2>Pengelompokan Umur</h2>
-            <div class="form-row" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="form-row--3cols">
                 @foreach (App\Models\HajjStat::AGE_GROUPS as $age)
                     <div class="form-group">
                         <label for="age_{{ $age }}">{{ $age }} tahun</label>

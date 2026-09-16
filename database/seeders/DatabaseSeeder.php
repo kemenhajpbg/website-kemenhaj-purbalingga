@@ -22,6 +22,9 @@ class DatabaseSeeder extends Seeder
             SiteContentSeeder::class,
             NewsSeeder::class,
             HajjStatSeeder::class,
+            OfficeProfileSeeder::class,
+            GallerySeeder::class,
+            OfficialSeeder::class,
         ]);
     }
 }

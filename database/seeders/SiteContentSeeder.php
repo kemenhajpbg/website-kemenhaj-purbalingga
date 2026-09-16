@@ -26,7 +26,7 @@ class SiteContentSeeder extends Seeder
             'cta_button_text' => 'Klik disini',
             'cta_url' => 'https://haji.go.id/estimasi-keberangkatan',
             'contact_address' => 'Jl. DI Panjaitan No.15, Purbalingga Lor, Kec. Purbalingga, Kabupaten Purbalingga, Jawa Tengah 53311',
-            'contact_email' => 'kemenagpurbalingga@gmail.com',
+            'contact_email' => 'seksiphupbg@gmail.com',
             'contact_phone' => '0822-2502-0837',
             'contact_hours' => "Senin - Kamis : 08:00 - 15:00 WIB\nJumat : 08:00 - 15:30 WIB",
             'map_embed_url' => 'https://maps.google.com/maps?q=Kantor+Kementerian+Agama+Kabupaten+Purbalingga&t=&z=15&ie=UTF8&iwloc=&output=embed',
