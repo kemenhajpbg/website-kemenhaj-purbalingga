@@ -49,4 +49,22 @@ class News extends Model
             ->whereNotNull('published_at')
             ->where('published_at', '<=', now());
     }
+
+    public function getDisplayImageAttribute(): ?string
+    {
+        if ($this->image && file_exists(public_path($this->image))) {
+            return $this->image;
+        }
+
+        if ($this->id) {
+            foreach (['jpg', 'jpeg', 'png', 'webp', 'JPG', 'JPEG', 'PNG'] as $ext) {
+                $path = "images/news/news-{$this->id}.{$ext}";
+                if (file_exists(public_path($path))) {
+                    return $path;
+                }
+            }
+        }
+
+        return $this->image ?: null;
+    }
 }

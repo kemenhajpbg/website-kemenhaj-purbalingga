@@ -4,8 +4,9 @@
     $shareUrl = url()->current();
     $shareTitle = $article->title;
     $shareDesc = $article->excerpt ?: \Illuminate\Support\Str::limit(strip_tags($article->content), 160);
-    $ogImage = $article->image 
-        ? (str_starts_with($article->image, 'http') ? $article->image : asset($article->image))
+    $imagePath = $article->display_image ?? $article->image;
+    $ogImage = $imagePath 
+        ? (str_starts_with($imagePath, 'http') ? $imagePath : asset($imagePath))
         : ($siteFavicon ?? asset('images/logo-kemenhaj.png'));
     $waShareUrl = 'https://api.whatsapp.com/send?text=' . rawurlencode($shareTitle . "\n\n" . $shareUrl);
 @endphp
@@ -52,9 +53,9 @@
                 </div>
             </header>
 
-            @if ($article->image)
+            @if ($imagePath)
                 <div class="news-article-image">
-                    <img src="{{ asset($article->image) }}" alt="{{ $article->title }}">
+                    <img src="{{ asset($imagePath) }}" alt="{{ $article->title }}">
                 </div>
             @endif
 

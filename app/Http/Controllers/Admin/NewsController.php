@@ -91,15 +91,63 @@ class NewsController extends Controller
     private function storeImage(Request $request, ?News $article = null): string
     {
         $file = $request->file('image_file');
-        $filename = 'news-'.($article?->id ?? time()).'.'.$file->getClientOriginalExtension();
+        $ext = strtolower($file->getClientOriginalExtension());
+        $filename = 'news-'.($article?->id ?? time()).'.'.$ext;
         $dir = public_path('images/news');
 
         if (! is_dir($dir)) {
             mkdir($dir, 0755, true);
         }
 
+        $targetPath = $dir.'/'.$filename;
         $file->move($dir, $filename);
 
+        // Optimize image for web & social media (WhatsApp requires <300KB)
+        $this->optimizeImage($targetPath, $ext);
+
         return 'images/news/'.$filename;
+    }
+
+    private function optimizeImage(string $path, string $ext): void
+    {
+        if (! extension_loaded('gd') || ! file_exists($path)) {
+            return;
+        }
+
+        $info = @getimagesize($path);
+        if (! $info) {
+            return;
+        }
+
+        $width = $info[0];
+        $height = $info[1];
+        $maxWidth = 1200;
+
+        if ($width > $maxWidth || filesize($path) > 300 * 1024) {
+            $newWidth = min($width, $maxWidth);
+            $newHeight = (int) ($height * ($newWidth / $width));
+
+            if (in_array($ext, ['jpg', 'jpeg'])) {
+                $src = @imagecreatefromjpeg($path);
+                if ($src) {
+                    $dst = imagecreatetruecolor($newWidth, $newHeight);
+                    imagecopyresampled($dst, $src, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+                    imagejpeg($dst, $path, 82);
+                    imagedestroy($src);
+                    imagedestroy($dst);
+                }
+            } elseif ($ext === 'png') {
+                $src = @imagecreatefrompng($path);
+                if ($src) {
+                    $dst = imagecreatetruecolor($newWidth, $newHeight);
+                    imagealphablending($dst, false);
+                    imagesavealpha($dst, true);
+                    imagecopyresampled($dst, $src, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+                    imagepng($dst, $path, 8);
+                    imagedestroy($src);
+                    imagedestroy($dst);
+                }
+            }
+        }
     }
 }
