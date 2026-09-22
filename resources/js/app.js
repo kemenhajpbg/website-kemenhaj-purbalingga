@@ -300,3 +300,113 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// ─── NEWS ARTICLE SHARE BUTTONS & CLIPBOARD HANDLER ───
+function copyTextToClipboard(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(text);
+    } else {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        return new Promise((resolve, reject) => {
+            const successful = document.execCommand('copy');
+            textArea.remove();
+            successful ? resolve() : reject(new Error('Copy command failed'));
+        });
+    }
+}
+
+function showShareToast(message) {
+    let toast = document.getElementById('news-share-toast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'news-share-toast';
+        toast.className = 'share-toast';
+        document.body.appendChild(toast);
+    }
+    toast.innerHTML = `
+        <span class="share-toast-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+            </svg>
+        </span>
+        <span class="share-toast-msg">${message}</span>
+    `;
+    toast.classList.add('is-visible');
+    clearTimeout(toast._timeout);
+    toast._timeout = setTimeout(() => {
+        toast.classList.remove('is-visible');
+    }, 3000);
+}
+
+document.addEventListener('click', async (e) => {
+    // 1. Copy Link Button Handler
+    const copyBtn = e.target.closest('.js-copy-link');
+    if (copyBtn) {
+        e.preventDefault();
+        const url = copyBtn.dataset.url || window.location.href;
+        try {
+            await copyTextToClipboard(url);
+            showShareToast('Tautan berita berhasil disalin ke clipboard!');
+
+            const copyIcon = copyBtn.querySelector('.icon-copy');
+            const checkIcon = copyBtn.querySelector('.icon-check');
+            const label = copyBtn.querySelector('.copy-text');
+
+            copyBtn.classList.add('is-copied');
+            if (copyIcon) copyIcon.classList.add('is-hidden');
+            if (checkIcon) checkIcon.classList.remove('is-hidden');
+            if (label) label.textContent = 'Tersalin!';
+
+            setTimeout(() => {
+                copyBtn.classList.remove('is-copied');
+                if (copyIcon) copyIcon.classList.remove('is-hidden');
+                if (checkIcon) checkIcon.classList.add('is-hidden');
+                if (label) label.textContent = 'Salin Tautan';
+            }, 2500);
+        } catch (err) {
+            showShareToast('Gagal menyalin tautan.');
+        }
+        return;
+    }
+
+    // 2. Instagram Button Handler
+    const igBtn = e.target.closest('.js-share-instagram');
+    if (igBtn) {
+        e.preventDefault();
+        const url = igBtn.dataset.url || window.location.href;
+        const title = igBtn.dataset.title || document.title;
+
+        // Try Web Share API first (on mobile devices, user can select Instagram)
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: title,
+                    text: `${title}\n\n${url}`,
+                    url: url
+                });
+                return;
+            } catch (err) {
+                if (err.name === 'AbortError') return;
+            }
+        }
+
+        // Fallback: Copy link and open Instagram
+        try {
+            await copyTextToClipboard(url);
+            showShareToast('Tautan disalin! Buka Instagram untuk membagikan.');
+            setTimeout(() => {
+                window.open('https://www.instagram.com/', '_blank', 'noopener,noreferrer');
+            }, 800);
+        } catch (err) {
+            window.open('https://www.instagram.com/', '_blank', 'noopener,noreferrer');
+        }
+        return;
+    }
+});

@@ -4,11 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('pageTitle', $siteTitle ?? 'Kementerian Haji dan Umrah Kabupaten Purbalingga')</title>
-    <meta name="description" content="Kementerian Haji dan Umrah Kabupaten Purbalingga — Layanan digital haji dan umrah.">
+    <meta name="description" content="@hasSection('pageDescription')@yield('pageDescription')@else{{ 'Kementerian Haji dan Umrah Kabupaten Purbalingga — Layanan digital haji dan umrah.' }}@endif">
     <meta name="application-name" content="{{ $siteTitle ?? 'Kementerian Haji dan Umrah Kabupaten Purbalingga' }}">
     <link rel="icon" type="image/png" href="{{ $siteFavicon ?? asset('images/logo-kemenhaj.png') }}">
     <link rel="apple-touch-icon" href="{{ $siteFavicon ?? asset('images/logo-kemenhaj.png') }}">
     <meta name="hajj-waiting-period" content="{{ $waitingPeriod }}">
+
+    <!-- Open Graph / WhatsApp / Facebook / Telegram -->
+    <meta property="og:site_name" content="{{ $siteTitle ?? 'Kementerian Haji dan Umrah Kabupaten Purbalingga' }}">
+    <meta property="og:type" content="@yield('ogType', 'website')">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="@yield('ogTitle', $siteTitle ?? 'Kementerian Haji dan Umrah Kabupaten Purbalingga')">
+    <meta property="og:description" content="@yield('ogDescription', 'Kementerian Haji dan Umrah Kabupaten Purbalingga — Layanan digital haji dan umrah.')">
+    <meta property="og:image" content="@yield('ogImage', $siteFavicon ?? asset('images/logo-kemenhaj.png'))">
+    <meta property="og:image:secure_url" content="@yield('ogImage', $siteFavicon ?? asset('images/logo-kemenhaj.png'))">
+    <meta property="og:image:alt" content="@yield('ogTitle', $siteTitle ?? 'Kementerian Haji dan Umrah Kabupaten Purbalingga')">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ url()->current() }}">
+    <meta name="twitter:title" content="@yield('ogTitle', $siteTitle ?? 'Kementerian Haji dan Umrah Kabupaten Purbalingga')">
+    <meta name="twitter:description" content="@yield('ogDescription', 'Kementerian Haji dan Umrah Kabupaten Purbalingga — Layanan digital haji dan umrah.')">
+    <meta name="twitter:image" content="@yield('ogImage', $siteFavicon ?? asset('images/logo-kemenhaj.png'))">
+
+    @yield('meta')
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
