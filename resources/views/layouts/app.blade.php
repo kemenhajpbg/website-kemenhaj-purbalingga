@@ -18,6 +18,7 @@
     <meta property="og:description" content="@yield('ogDescription', 'Kementerian Haji dan Umrah Kabupaten Purbalingga — Layanan digital haji dan umrah.')">
     <meta property="og:image" content="@yield('ogImage', $siteFavicon ?? asset('images/logo-kemenhaj.png'))">
     <meta property="og:image:secure_url" content="@yield('ogImage', $siteFavicon ?? asset('images/logo-kemenhaj.png'))">
+    <meta property="og:image:type" content="@yield('ogImageType', 'image/jpeg')">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="@yield('ogTitle', $siteTitle ?? 'Kementerian Haji dan Umrah Kabupaten Purbalingga')">

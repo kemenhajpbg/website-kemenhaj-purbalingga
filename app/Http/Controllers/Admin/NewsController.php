@@ -103,51 +103,95 @@ class NewsController extends Controller
         $file->move($dir, $filename);
 
         // Optimize image for web & social media (WhatsApp requires <300KB)
-        $this->optimizeImage($targetPath, $ext);
+        $optimizedPath = $this->optimizeImage($targetPath, $ext);
 
-        return 'images/news/'.$filename;
+        return 'images/news/'.basename($optimizedPath);
     }
 
-    private function optimizeImage(string $path, string $ext): void
+    private function optimizeImage(string $path, string $ext): string
     {
         if (! extension_loaded('gd') || ! file_exists($path)) {
-            return;
+            return $path;
         }
 
         $info = @getimagesize($path);
         if (! $info) {
-            return;
+            return $path;
         }
 
         $width = $info[0];
         $height = $info[1];
         $maxWidth = 1200;
+        $maxBytes = 290 * 1024; // Di bawah 300KB untuk persyaratan WhatsApp
 
-        if ($width > $maxWidth || filesize($path) > 300 * 1024) {
-            $newWidth = min($width, $maxWidth);
-            $newHeight = (int) ($height * ($newWidth / $width));
+        // Jika dimensi dan ukuran sudah kecil, tidak perlu diubah
+        if ($width <= $maxWidth && filesize($path) <= $maxBytes) {
+            return $path;
+        }
 
-            if (in_array($ext, ['jpg', 'jpeg'])) {
-                $src = @imagecreatefromjpeg($path);
-                if ($src) {
-                    $dst = imagecreatetruecolor($newWidth, $newHeight);
-                    imagecopyresampled($dst, $src, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
-                    imagejpeg($dst, $path, 82);
-                    imagedestroy($src);
+        $newWidth = min($width, $maxWidth);
+        $newHeight = (int) round($height * ($newWidth / $width));
+
+        // Load image resource
+        $src = null;
+        if (in_array($ext, ['jpg', 'jpeg'])) {
+            $src = @imagecreatefromjpeg($path);
+        } elseif ($ext === 'png') {
+            $src = @imagecreatefrompng($path);
+        } elseif ($ext === 'webp' && function_exists('imagecreatefromwebp')) {
+            $src = @imagecreatefromwebp($path);
+        }
+
+        if (! $src) {
+            $src = @imagecreatefromstring((string) file_get_contents($path));
+        }
+
+        if (! $src) {
+            return $path;
+        }
+
+        $dst = imagecreatetruecolor($newWidth, $newHeight);
+
+        // Jaga transparansi jika PNG atau WebP
+        if (in_array($ext, ['png', 'webp'])) {
+            imagealphablending($dst, false);
+            imagesavealpha($dst, true);
+        }
+
+        imagecopyresampled($dst, $src, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+        imagedestroy($src);
+
+        // Simpan gambar yang telah dioptimasi
+        if (in_array($ext, ['jpg', 'jpeg'])) {
+            $quality = 82;
+            imagejpeg($dst, $path, $quality);
+            while (filesize($path) > $maxBytes && $quality > 50) {
+                $quality -= 8;
+                imagejpeg($dst, $path, $quality);
+            }
+        } elseif ($ext === 'png') {
+            imagepng($dst, $path, 8);
+            // Jika PNG foto masih > 290KB, konversi ke JPG berkualitas tinggi agar diterima WhatsApp
+            if (filesize($path) > $maxBytes) {
+                $jpgPath = preg_replace('/\.png$/i', '.jpg', $path);
+                $jpgDst = imagecreatetruecolor($newWidth, $newHeight);
+                $white = imagecolorallocate($jpgDst, 255, 255, 255);
+                imagefilledrectangle($jpgDst, 0, 0, $newWidth, $newHeight, $white);
+                imagecopy($jpgDst, $dst, 0, 0, 0, 0, $newWidth, $newHeight);
+                imagejpeg($jpgDst, $jpgPath, 80);
+                imagedestroy($jpgDst);
+                if (file_exists($jpgPath) && filesize($jpgPath) <= $maxBytes) {
+                    @unlink($path);
                     imagedestroy($dst);
-                }
-            } elseif ($ext === 'png') {
-                $src = @imagecreatefrompng($path);
-                if ($src) {
-                    $dst = imagecreatetruecolor($newWidth, $newHeight);
-                    imagealphablending($dst, false);
-                    imagesavealpha($dst, true);
-                    imagecopyresampled($dst, $src, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
-                    imagepng($dst, $path, 8);
-                    imagedestroy($src);
-                    imagedestroy($dst);
+                    return $jpgPath;
                 }
             }
+        } elseif ($ext === 'webp' && function_exists('imagewebp')) {
+            imagewebp($dst, $path, 80);
         }
+
+        imagedestroy($dst);
+
+        return $path;
     }
 }

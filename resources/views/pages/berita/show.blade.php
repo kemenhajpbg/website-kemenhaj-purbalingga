@@ -8,6 +8,17 @@
     $ogImage = $imagePath 
         ? (str_starts_with($imagePath, 'http') ? $imagePath : asset($imagePath))
         : ($siteFavicon ?? asset('images/logo-kemenhaj.png'));
+
+    $ogImageType = 'image/jpeg';
+    if ($imagePath) {
+        $imgExt = strtolower(pathinfo($imagePath, PATHINFO_EXTENSION));
+        if ($imgExt === 'png') {
+            $ogImageType = 'image/png';
+        } elseif ($imgExt === 'webp') {
+            $ogImageType = 'image/webp';
+        }
+    }
+
     $waShareUrl = 'https://api.whatsapp.com/send?text=' . rawurlencode($shareTitle . "\n\n" . $shareUrl);
 @endphp
 
@@ -17,6 +28,7 @@
 @section('ogTitle', $shareTitle)
 @section('ogDescription', $shareDesc)
 @section('ogImage', $ogImage)
+@section('ogImageType', $ogImageType)
 
 @section('meta')
     <meta property="article:published_time" content="{{ $article->published_at?->toIso8601String() }}">

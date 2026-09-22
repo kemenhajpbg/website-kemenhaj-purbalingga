@@ -30,12 +30,12 @@
             <div class="form-group">
                 <label for="published_at">Tanggal terbit</label>
                 <input type="datetime-local" id="published_at" name="published_at"
-                    value="{{ old('published_at', $article->published_at?->format('Y-m-d\TH:i')) }}">
+                    value="{{ old('published_at', $article->published_at?->format('Y-m-d\TH:i') ?? now()->format('Y-m-d\TH:i')) }}">
             </div>
             <div class="form-group">
                 <label>&nbsp;</label>
                 <div class="form-check" style="margin-top:10px;">
-                    <input type="checkbox" id="is_published" name="is_published" value="1" @checked(old('is_published', $article->is_published))>
+                    <input type="checkbox" id="is_published" name="is_published" value="1" @checked(old('is_published', $article->exists ? $article->is_published : true))>
                     <label for="is_published" style="margin:0;">Publikasikan</label>
                 </div>
             </div>
