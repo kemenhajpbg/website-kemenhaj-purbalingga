@@ -8,6 +8,17 @@
         <div class="dashboard-welcome-content">
             <h1>Selamat Datang di Panel Admin</h1>
             <p>Sistem Informasi Terpadu & Manajemen Konten Portal Kementerian Haji dan Umrah Kabupaten Purbalingga. Kelola semua fitur, data, dan informasi publik Anda dari dashboard ini.</p>
+            <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
+                <a href="{{ route('admin.layanan.create', ['type' => 'page']) }}" class="btn" style="background:#fff;color:#0a7a6f;font-weight:700;padding:10px 18px;display:inline-flex;align-items:center;gap:6px;box-shadow:0 4px 14px rgba(0,0,0,0.15);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    + Tambah Halaman Mall Layanan
+                </a>
+                <a href="{{ route('admin.layanan.index') }}" class="btn" style="background:rgba(255,255,255,0.2);color:#fff;border:1px solid rgba(255,255,255,0.4);font-weight:600;padding:10px 18px;">
+                    Kelola Mall Layanan
+                </a>
+            </div>
         </div>
     </div>
 
@@ -77,17 +88,24 @@
             </div>
         </a>
 
-        <a href="{{ route('admin.layanan.index') }}" class="dashboard-card-premium">
-            <div class="dashboard-card-icon icon-services">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.015a2.993 2.993 0 0 0 2.25 1.015c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.5a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75h-3.5a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
-                </svg>
+        <div class="dashboard-card-premium" style="display:flex;flex-direction:column;justify-content:space-between;">
+            <a href="{{ route('admin.layanan.index') }}" style="text-decoration:none;color:inherit;display:block;">
+                <div class="dashboard-card-icon icon-services">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.015a2.993 2.993 0 0 0 2.25 1.015c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.5a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75h-3.5a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
+                    </svg>
+                </div>
+                <div class="dashboard-card-body">
+                    <h4>Mall Layanan</h4>
+                    <p>Tambah halaman informasi data jemaah & PDF, atau link pendaftaran dan pelimpahan porsi haji.</p>
+                </div>
+            </a>
+            <div style="margin-top:12px;padding-top:10px;border-top:1px dashed #e2e8f0;display:flex;justify-content:space-between;align-items:center;">
+                <a href="{{ route('admin.layanan.create', ['type' => 'page']) }}" style="font-size:0.82rem;font-weight:600;color:var(--admin-primary);text-decoration:none;">
+                    + Tambah Halaman Baru &rarr;
+                </a>
             </div>
-            <div class="dashboard-card-body">
-                <h4>Mall Layanan</h4>
-                <p>Tambah, edit, atau hapus link pendaftaran, pembatalan, and pelimpahan porsi haji.</p>
-            </div>
-        </a>
+        </div>
 
         <a href="{{ route('admin.berita.index') }}" class="dashboard-card-premium">
             <div class="dashboard-card-icon icon-news">

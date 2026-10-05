@@ -11,6 +11,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\OfficeProfileController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\ServiceController as PublicServiceController;
 use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,7 @@ Route::get('/profil', [OfficeProfileController::class, 'index'])->name('profil')
 Route::get('/berita', [NewsController::class, 'index'])->name('berita.index');
 Route::get('/berita/{slug}', [NewsController::class, 'show'])->name('berita.show');
 Route::get('/galeri', [GalleryController::class, 'index'])->name('galeri.index');
+Route::get('/layanan/{slug}', [PublicServiceController::class, 'show'])->name('layanan.show');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('guest')->group(function () {

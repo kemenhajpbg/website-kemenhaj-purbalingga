@@ -78,7 +78,7 @@
                         @if(!empty($footerServices) && $footerServices->count() > 0)
                             @foreach($footerServices as $service)
                                 <li>
-                                    <a href="{{ $service->url ?: '#' }}" @if($service->url && $service->url !== '#') target="_blank" rel="noopener noreferrer" @endif>
+                                    <a href="{{ $service->target_url }}" @if($service->isExternal()) target="_blank" rel="noopener noreferrer" @endif>
                                         {{ $service->title }}
                                     </a>
                                 </li>

@@ -61,7 +61,7 @@
 
         <div class="service-grid">
             @foreach ($services as $service)
-                <a href="{{ $service->url ?: '#' }}" class="service-card" @if($service->url && $service->url !== '#') target="_blank" rel="noopener noreferrer" @endif>
+                <a href="{{ $service->target_url }}" class="service-card" @if($service->isExternal()) target="_blank" rel="noopener noreferrer" @endif>
                     <img src="{{ asset($service->icon) }}" alt="">
                     <h4>{{ $service->title }}</h4>
                 </a>
