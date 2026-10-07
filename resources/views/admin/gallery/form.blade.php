@@ -24,10 +24,11 @@
         <div class="form-group">
             <label for="image_file">File Gambar {{ $gallery->exists ? '(kosongkan jika tidak diganti)' : '' }}</label>
             <input type="file" id="image_file" name="image_file" accept="image/*" {{ $gallery->exists ? '' : 'required' }}>
-            @if ($gallery->image)
+            @php $formGalleryImg = $gallery->display_image ?? $gallery->image; @endphp
+            @if ($formGalleryImg)
                 <div style="margin-top:12px;">
                     <p style="margin-bottom:6px;font-size:0.85rem;color:#666;">Gambar saat ini:</p>
-                    <img src="{{ asset($gallery->image) }}" alt="" class="preview-img" style="max-height:160px;border-radius:8px;border:1px solid #ccc;display:block;">
+                    <img src="{{ asset($formGalleryImg) }}" alt="" class="preview-img" style="max-height:160px;border-radius:8px;border:1px solid #ccc;display:block;">
                 </div>
             @endif
         </div>

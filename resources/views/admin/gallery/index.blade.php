@@ -24,8 +24,9 @@
                     @forelse ($galleries as $item)
                         <tr>
                             <td>
-                                @if ($item->image)
-                                    <img src="{{ asset($item->image) }}" alt="" style="width:80px;height:60px;object-fit:cover;border-radius:6px;border:1px solid #ccc;display:block;">
+                                @php $adminGalleryImg = $item->display_image ?? $item->image; @endphp
+                                @if ($adminGalleryImg)
+                                    <img src="{{ asset($adminGalleryImg) }}" alt="" style="width:80px;height:60px;object-fit:cover;border-radius:6px;border:1px solid #ccc;display:block;">
                                 @else
                                     <div style="width:80px;height:60px;background:#eee;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#999;font-size:10px;">No Image</div>
                                 @endif

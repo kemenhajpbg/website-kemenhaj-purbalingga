@@ -22,9 +22,10 @@
         @else
             <div class="gallery-grid">
                 @foreach ($galleries as $item)
-                    <div class="gallery-card" data-title="{{ $item->title }}" data-description="{{ $item->description }}" data-image="{{ asset($item->image) }}" data-date="{{ $item->created_at->translatedFormat('d M Y') }}">
+                    @php $galleryImg = $item->display_image ?? $item->image; @endphp
+                    <div class="gallery-card" data-title="{{ $item->title }}" data-description="{{ $item->description }}" data-image="{{ asset($galleryImg) }}" data-date="{{ $item->created_at->translatedFormat('d M Y') }}">
                         <div class="gallery-card-image-wrap">
-                            <img src="{{ asset($item->image) }}" alt="{{ $item->title }}" class="gallery-card-image" loading="lazy">
+                            <img src="{{ asset($galleryImg) }}" alt="{{ $item->title }}" class="gallery-card-image" loading="lazy">
                             <div class="gallery-card-overlay">
                                 <span class="gallery-zoom-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">

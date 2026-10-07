@@ -9,13 +9,19 @@
             <h1>Selamat Datang di Panel Admin</h1>
             <p>Sistem Informasi Terpadu & Manajemen Konten Portal Kementerian Haji dan Umrah Kabupaten Purbalingga. Kelola semua fitur, data, dan informasi publik Anda dari dashboard ini.</p>
             <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
-                <a href="{{ route('admin.layanan.create', ['type' => 'page']) }}" class="btn" style="background:#fff;color:#0a7a6f;font-weight:700;padding:10px 18px;display:inline-flex;align-items:center;gap:6px;box-shadow:0 4px 14px rgba(0,0,0,0.15);">
+                <a href="{{ route('admin.berita.create') }}" class="btn" style="background:#fff;color:#0a7a6f;font-weight:700;padding:10px 18px;display:inline-flex;align-items:center;gap:6px;box-shadow:0 4px 14px rgba(0,0,0,0.15);">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
-                    + Tambah Halaman Mall Layanan
+                    + Tambah Berita
                 </a>
-                <a href="{{ route('admin.layanan.index') }}" class="btn" style="background:rgba(255,255,255,0.2);color:#fff;border:1px solid rgba(255,255,255,0.4);font-weight:600;padding:10px 18px;">
+                <a href="{{ route('admin.layanan.create', ['type' => 'page']) }}" class="btn" style="background:rgba(255,255,255,0.2);color:#fff;border:1px solid rgba(255,255,255,0.4);font-weight:600;padding:10px 18px;display:inline-flex;align-items:center;gap:6px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    + Halaman Mall Layanan
+                </a>
+                <a href="{{ route('admin.layanan.index') }}" class="btn" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.3);font-weight:600;padding:10px 18px;">
                     Kelola Mall Layanan
                 </a>
             </div>
@@ -107,17 +113,24 @@
             </div>
         </div>
 
-        <a href="{{ route('admin.berita.index') }}" class="dashboard-card-premium">
-            <div class="dashboard-card-icon icon-news">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" />
-                </svg>
+        <div class="dashboard-card-premium" style="display:flex;flex-direction:column;justify-content:space-between;">
+            <a href="{{ route('admin.berita.index') }}" style="text-decoration:none;color:inherit;display:block;">
+                <div class="dashboard-card-icon icon-news">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" />
+                    </svg>
+                </div>
+                <div class="dashboard-card-body">
+                    <h4>Berita & Pengumuman</h4>
+                    <p>Publikasikan informasi kegiatan dinas, manasik haji, and pengumuman terbaru.</p>
+                </div>
+            </a>
+            <div style="margin-top:12px;padding-top:10px;border-top:1px dashed #e2e8f0;display:flex;justify-content:space-between;align-items:center;">
+                <a href="{{ route('admin.berita.create') }}" style="font-size:0.82rem;font-weight:600;color:var(--admin-primary);text-decoration:none;">
+                    + Tambah Berita Baru &rarr;
+                </a>
             </div>
-            <div class="dashboard-card-body">
-                <h4>Berita & Pengumuman</h4>
-                <p>Publikasikan informasi kegiatan dinas, manasik haji, and pengumuman terbaru.</p>
-            </div>
-        </a>
+        </div>
 
         <a href="{{ route('admin.profil.index') }}" class="dashboard-card-premium">
             <div class="dashboard-card-icon icon-profile">

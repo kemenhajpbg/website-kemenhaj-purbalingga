@@ -19,13 +19,17 @@ class NewsController extends Controller
 
     public function show(string $slug): View
     {
-        $article = News::query()
-            ->published()
-            ->where('slug', $slug)
-            ->firstOrFail();
+        $query = News::query();
+
+        // Admin yang sedang login dapat melihat berita draft/jadwal masa depan (preview)
+        if (! auth()->check()) {
+            $query->published();
+        }
+
+        $article = $query->where('slug', $slug)->firstOrFail();
 
         $related = News::query()
-            ->published()
+            ->when(! auth()->check(), fn ($q) => $q->published())
             ->where('id', '!=', $article->id)
             ->orderByDesc('published_at')
             ->limit(3)

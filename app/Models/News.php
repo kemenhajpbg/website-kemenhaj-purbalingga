@@ -47,7 +47,7 @@ class News extends Model
         return $query
             ->where('is_published', true)
             ->whereNotNull('published_at')
-            ->where('published_at', '<=', now());
+            ->where('published_at', '<=', now()->addHours(12));
     }
 
     public function getDisplayImageAttribute(): ?string

@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', HomeController::class)->name('home');
 Route::get('/profil', [OfficeProfileController::class, 'index'])->name('profil');
 Route::get('/berita', [NewsController::class, 'index'])->name('berita.index');
+Route::get('/berita/create', fn () => redirect()->route('admin.berita.create'));
+Route::get('/berita/tambah', fn () => redirect()->route('admin.berita.create'));
 Route::get('/berita/{slug}', [NewsController::class, 'show'])->name('berita.show');
 Route::get('/galeri', [GalleryController::class, 'index'])->name('galeri.index');
 Route::get('/layanan/{slug}', [PublicServiceController::class, 'show'])->name('layanan.show');
@@ -36,6 +38,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('layanan', ServiceController::class)
             ->parameters(['layanan' => 'layanan'])
             ->except(['show']);
+        Route::get('berita/tambah', fn () => redirect()->route('admin.berita.create'));
         Route::resource('berita', AdminNewsController::class)->except(['show']);
         Route::resource('profil', AdminOfficeProfileController::class)->except(['show']);
         Route::resource('pejabat', App\Http\Controllers\Admin\OfficialController::class)
