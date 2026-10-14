@@ -14,6 +14,7 @@
                 <thead>
                     <tr>
                         <th>Judul</th>
+                        <th>Kategori</th>
                         <th>Tanggal</th>
                         <th>Status</th>
                         <th>Aksi</th>
@@ -22,7 +23,14 @@
                 <tbody>
                     @forelse ($newsList as $item)
                         <tr>
-                            <td>{{ $item->title }}</td>
+                            <td><strong>{{ $item->title }}</strong></td>
+                            <td>
+                                @if ($item->category)
+                                    <span style="display:inline-block;padding:2px 8px;border-radius:999px;font-size:0.75rem;font-weight:600;background:{{ $item->category === 'Haji 2027' ? '#e8f5e9;color:#2e7d32;' : '#e0f2fe;color:#0369a1;' }}">{{ $item->category }}</span>
+                                @else
+                                    <span style="color:#8c9b96;font-size:0.8rem;">—</span>
+                                @endif
+                            </td>
                             <td>{{ $item->published_at?->format('d/m/Y') ?? '—' }}</td>
                             <td>{{ $item->is_published ? 'Terbit' : 'Draft' }}</td>
                             <td>
@@ -39,7 +47,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" style="text-align:center;color:#5c6b66;">Belum ada berita.</td>
+                            <td colspan="5" style="text-align:center;color:#5c6b66;">Belum ada berita.</td>
                         </tr>
                     @endforelse
                 </tbody>

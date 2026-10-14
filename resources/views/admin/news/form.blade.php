@@ -17,6 +17,19 @@
         </div>
 
         <div class="form-group">
+            <label for="category">Kategori / Topik (Opsional)</label>
+            <input type="text" id="category" name="category" list="category_suggestions" value="{{ old('category', $article->category) }}" placeholder="Contoh: Haji 2027, Regulasi, Layanan, Umum">
+            <datalist id="category_suggestions">
+                <option value="Haji 2027">Haji 2027</option>
+                <option value="Regulasi">Regulasi</option>
+                <option value="Mall Layanan">Mall Layanan</option>
+                <option value="Umrah">Umrah</option>
+                <option value="Informasi Publik">Informasi Publik</option>
+            </datalist>
+            <small style="color:var(--admin-muted);font-size:0.8rem;display:block;margin-top:4px;">Gunakan <strong>Haji 2027</strong> agar berita otomatis muncul di halaman Info Jemaah 2027.</small>
+        </div>
+
+        <div class="form-group">
             <label for="excerpt">Ringkasan (opsional)</label>
             <textarea id="excerpt" name="excerpt" rows="2" maxlength="500">{{ old('excerpt', $article->excerpt) }}</textarea>
         </div>

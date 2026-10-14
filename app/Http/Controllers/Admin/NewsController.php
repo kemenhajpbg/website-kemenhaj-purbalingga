@@ -72,6 +72,7 @@ class NewsController extends Controller
     {
         $data = $request->validate([
             'title' => ['required', 'string', 'max:255'],
+            'category' => ['nullable', 'string', 'max:100'],
             'excerpt' => ['nullable', 'string', 'max:500'],
             'content' => ['required', 'string'],
             'published_at' => ['nullable', 'date'],

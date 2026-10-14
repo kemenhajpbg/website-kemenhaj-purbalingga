@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             OfficeProfileSeeder::class,
             GallerySeeder::class,
             OfficialSeeder::class,
+            Hajj2027Seeder::class,
         ]);
     }
 }

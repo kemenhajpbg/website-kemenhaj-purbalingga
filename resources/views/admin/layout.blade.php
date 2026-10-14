@@ -41,8 +41,59 @@
                     <span>Galeri</span>
                 </a>
                 <a href="{{ route('admin.hajj-stats.edit') }}" @class(['active' => request()->routeIs('admin.hajj-stats.*')])>
-                    <span>Data Jemaah</span>
+                    <span>Data Jemaah (Umum)</span>
                 </a>
+
+                <div class="admin-sidebar-divider"></div>
+
+                {{-- 🕋 SATU MENU UTAMA: INFO JEMAAH 2027 DENGAN 10 SUBMENU --}}
+                <div class="admin-menu-group {{ request()->routeIs('admin.jemaah-2027.*') ? 'is-open' : '' }}" id="groupJemaah2027">
+                    <div class="admin-menu-group-header" onclick="document.getElementById('groupJemaah2027').classList.toggle('is-open')">
+                        <span class="group-title">
+                            <span style="font-size:1.1rem;">🕋</span>
+                            <span>INFO JEMAAH 2027</span>
+                        </span>
+                        <svg class="group-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                        </svg>
+                    </div>
+                    <div class="admin-menu-sub">
+                        <a href="{{ route('admin.jemaah-2027.dashboard') }}" @class(['active' => request()->routeIs('admin.jemaah-2027.dashboard')])>
+                            <span>1. Dashboard</span>
+                        </a>
+                        <a href="{{ route('admin.jemaah-2027.stats.edit') }}" @class(['active' => request()->routeIs('admin.jemaah-2027.stats.*')])>
+                            <span>2. Statistik Jemaah</span>
+                        </a>
+                        <a href="{{ route('admin.jemaah-2027.stages.index') }}" @class(['active' => request()->routeIs('admin.jemaah-2027.stages.*')])>
+                            <span>3. Progres Persiapan</span>
+                        </a>
+                        <a href="{{ route('admin.jemaah-2027.verifications.index') }}" @class(['active' => request()->routeIs('admin.jemaah-2027.verifications.*')])>
+                            <span>4. Verifikasi</span>
+                        </a>
+                        <a href="{{ route('admin.jemaah-2027.biometrics.edit') }}" @class(['active' => request()->routeIs('admin.jemaah-2027.biometrics.*')])>
+                            <span>5. Biometrik</span>
+                        </a>
+                        <a href="{{ route('admin.jemaah-2027.districts.index') }}" @class(['active' => request()->routeIs('admin.jemaah-2027.districts.*')])>
+                            <span>6. Kecamatan</span>
+                        </a>
+                        <a href="{{ route('admin.jemaah-2027.timelines.index') }}" @class(['active' => request()->routeIs('admin.jemaah-2027.timelines.*')])>
+                            <span>7. Timeline</span>
+                        </a>
+                        <a href="{{ route('admin.jemaah-2027.kloters.index') }}" @class(['active' => request()->routeIs('admin.jemaah-2027.kloters.*')])>
+                            <span>8. Kloter</span>
+                        </a>
+                        <a href="{{ route('admin.jemaah-2027.announcements.index') }}" @class(['active' => request()->routeIs('admin.jemaah-2027.announcements.*')])>
+                            <span>9. Pengumuman</span>
+                        </a>
+                        <a href="{{ route('admin.jemaah-2027.documents.index') }}" @class(['active' => request()->routeIs('admin.jemaah-2027.documents.*')])>
+                            <span>10. Panduan & Dokumen</span>
+                        </a>
+                        <a href="{{ route('admin.jemaah-2027.services.index') }}" @class(['active' => request()->routeIs('admin.jemaah-2027.services.*')])>
+                            <span>11. Layanan Jemaah</span>
+                        </a>
+                    </div>
+                </div>
+
                 <div class="admin-sidebar-divider"></div>
                 <a href="{{ route('home') }}" target="_blank" class="view-website-link">
                     <span>Lihat Website</span>

@@ -681,3 +681,135 @@ html, body.admin-body {
         font-size: 1.5rem;
     }
 }
+
+/* ─── INFO JEMAAH 2027 SIDEBAR MENU & ADMIN STYLES ─── */
+.admin-menu-group {
+    display: flex;
+    flex-direction: column;
+    margin: 4px 0;
+}
+
+.admin-menu-group-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    color: #ffd54f;
+    background: rgba(245, 197, 24, 0.12);
+    border: 1px solid rgba(245, 197, 24, 0.25);
+    border-radius: 8px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.admin-menu-group-header:hover,
+.admin-menu-group.is-open .admin-menu-group-header {
+    background: rgba(245, 197, 24, 0.2);
+    border-color: rgba(245, 197, 24, 0.4);
+    color: #ffe082;
+}
+
+.admin-menu-group-header .group-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.admin-menu-group-header .group-arrow {
+    transition: transform 0.25s ease;
+}
+
+.admin-menu-group.is-open .admin-menu-group-header .group-arrow {
+    transform: rotate(180deg);
+}
+
+.admin-menu-sub {
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+    padding: 6px 0 6px 14px;
+    border-left: 2px solid rgba(245, 197, 24, 0.35);
+    margin: 4px 0 8px 12px;
+}
+
+.admin-menu-group.is-open .admin-menu-sub {
+    display: flex;
+}
+
+.admin-menu-sub a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s, padding-left 0.2s;
+}
+
+.admin-menu-sub a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding-left: 18px;
+}
+
+.admin-menu-sub a.active {
+    background: #0d9a8c;
+    color: #fff;
+    font-weight: 600;
+}
+
+.badge-status {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.badge-success {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.badge-warning {
+    background: #fff8e1;
+    color: #b78103;
+}
+
+.badge-info {
+    background: #e0f2fe;
+    color: #0369a1;
+}
+
+.badge-neutral {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.badge-danger {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.admin-progress-track {
+    width: 100%;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-top: 6px;
+}
+
+.admin-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #0d9a8c, #8a9a28);
+    border-radius: 999px;
+    transition: width 0.4s ease;
+}
+

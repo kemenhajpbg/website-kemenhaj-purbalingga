@@ -15,6 +15,9 @@
             <nav class="site-nav" aria-label="Navigasi utama">
                 <a href="{{ route('home') }}" @class(['site-nav-link', 'is-active' => request()->routeIs('home')])>Beranda</a>
                 <a href="{{ route('profil') }}" @class(['site-nav-link', 'is-active' => request()->routeIs('profil')])>Profil</a>
+                <a href="{{ route('info.jemaah.2027') }}" @class(['site-nav-link site-nav-link--hajj', 'is-active' => request()->routeIs('info.jemaah.2027*')])>
+                    <span aria-hidden="true">🕋</span> Info Jemaah 2027
+                </a>
                 <a href="{{ route('berita.index') }}" @class(['site-nav-link', 'is-active' => request()->routeIs('berita.*')])>Berita</a>
                 <a href="{{ route('galeri.index') }}" @class(['site-nav-link', 'is-active' => request()->routeIs('galeri.*')])>Galeri</a>
                 <a href="https://haji.go.id/regulasi" target="_blank" rel="noopener noreferrer" class="site-nav-link">Regulasi</a>
@@ -29,5 +32,7 @@
             </div>
         @endisset
     </div>
-    <div class="page-top-slope" aria-hidden="true"></div>
+    @if (empty($hideSlope))
+        <div class="page-top-slope" aria-hidden="true"></div>
+    @endif
 </header>

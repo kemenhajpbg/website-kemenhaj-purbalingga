@@ -24,6 +24,11 @@ Route::get('/berita/{slug}', [NewsController::class, 'show'])->name('berita.show
 Route::get('/galeri', [GalleryController::class, 'index'])->name('galeri.index');
 Route::get('/layanan/{slug}', [PublicServiceController::class, 'show'])->name('layanan.show');
 
+// Public Info Jemaah 2027
+Route::get('/info-jemaah-2027', [\App\Http\Controllers\Hajj2027Controller::class, 'index'])->name('info.jemaah.2027');
+Route::get('/info-jemaah-2027/dokumen/{document}/download', [\App\Http\Controllers\Hajj2027Controller::class, 'downloadDocument'])->name('info.jemaah.2027.download');
+Route::get('/info-jemaah-2027/pengumuman/{slug}', [\App\Http\Controllers\Hajj2027Controller::class, 'showAnnouncement'])->name('info.jemaah.2027.pengumuman');
+
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('guest')->group(function () {
         Route::get('login', [AuthController::class, 'showLogin'])->name('login');
@@ -47,5 +52,46 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('galeri', AdminGalleryController::class)->except(['show']);
         Route::get('data-jemaah', [HajjStatController::class, 'edit'])->name('hajj-stats.edit');
         Route::put('data-jemaah', [HajjStatController::class, 'update'])->name('hajj-stats.update');
+
+        // 🕋 Info Jemaah 2027 Admin Management
+        Route::prefix('info-jemaah-2027')->name('jemaah-2027.')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Admin\Hajj2027\DashboardController::class, 'index'])->name('dashboard');
+            Route::get('statistik', [\App\Http\Controllers\Admin\Hajj2027\StatController::class, 'edit'])->name('stats.edit');
+            Route::put('statistik', [\App\Http\Controllers\Admin\Hajj2027\StatController::class, 'update'])->name('stats.update');
+            Route::resource('progres', \App\Http\Controllers\Admin\Hajj2027\StageController::class)
+                ->parameters(['progres' => 'stage'])
+                ->names('stages')
+                ->except(['show']);
+            Route::resource('verifikasi', \App\Http\Controllers\Admin\Hajj2027\VerificationController::class)
+                ->parameters(['verifikasi' => 'verification'])
+                ->names('verifications')
+                ->except(['show']);
+            Route::get('biometrik', [\App\Http\Controllers\Admin\Hajj2027\BiometricController::class, 'edit'])->name('biometrics.edit');
+            Route::put('biometrik', [\App\Http\Controllers\Admin\Hajj2027\BiometricController::class, 'update'])->name('biometrics.update');
+            Route::resource('kecamatan', \App\Http\Controllers\Admin\Hajj2027\DistrictController::class)
+                ->parameters(['kecamatan' => 'district'])
+                ->names('districts')
+                ->except(['show']);
+            Route::resource('timeline', \App\Http\Controllers\Admin\Hajj2027\TimelineController::class)
+                ->parameters(['timeline' => 'timeline'])
+                ->names('timelines')
+                ->except(['show']);
+            Route::resource('kloter', \App\Http\Controllers\Admin\Hajj2027\KloterController::class)
+                ->parameters(['kloter' => 'kloter'])
+                ->names('kloters')
+                ->except(['show']);
+            Route::resource('pengumuman', \App\Http\Controllers\Admin\Hajj2027\AnnouncementController::class)
+                ->parameters(['pengumuman' => 'announcement'])
+                ->names('announcements')
+                ->except(['show']);
+            Route::resource('dokumen', \App\Http\Controllers\Admin\Hajj2027\DocumentController::class)
+                ->parameters(['dokumen' => 'document'])
+                ->names('documents')
+                ->except(['show']);
+            Route::resource('layanan', \App\Http\Controllers\Admin\Hajj2027\ServiceController::class)
+                ->parameters(['layanan' => 'service'])
+                ->names('services')
+                ->except(['show']);
+        });
     });
 });
