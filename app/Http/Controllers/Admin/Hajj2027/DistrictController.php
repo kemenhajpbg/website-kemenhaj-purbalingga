@@ -37,22 +37,22 @@ class DistrictController extends Controller
         return redirect()->route('admin.jemaah-2027.districts.index')->with('success', 'Data kecamatan berhasil ditambahkan.');
     }
 
-    public function edit(Hajj2027District $kecamatan): View
+    public function edit(Hajj2027District $district): View
     {
-        return view('admin.hajj-2027.districts.form', ['district' => $kecamatan]);
+        return view('admin.hajj-2027.districts.form', ['district' => $district]);
     }
 
-    public function update(Request $request, Hajj2027District $kecamatan): RedirectResponse
+    public function update(Request $request, Hajj2027District $district): RedirectResponse
     {
         $data = $this->validated($request);
-        $kecamatan->update($data);
+        $district->update($data);
 
         return redirect()->route('admin.jemaah-2027.districts.index')->with('success', 'Data kecamatan berhasil diperbarui.');
     }
 
-    public function destroy(Hajj2027District $kecamatan): RedirectResponse
+    public function destroy(Hajj2027District $district): RedirectResponse
     {
-        $kecamatan->delete();
+        $district->delete();
 
         return redirect()->route('admin.jemaah-2027.districts.index')->with('success', 'Data kecamatan berhasil dihapus.');
     }

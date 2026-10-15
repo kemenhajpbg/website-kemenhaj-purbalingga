@@ -53,22 +53,22 @@ class VerificationController extends Controller
         return redirect()->route('admin.jemaah-2027.verifications.index')->with('success', 'Data tahap verifikasi berhasil ditambahkan.');
     }
 
-    public function edit(Hajj2027Verification $verifikasi): View
+    public function edit(Hajj2027Verification $verification): View
     {
-        return view('admin.hajj-2027.verifications.form', ['verification' => $verifikasi]);
+        return view('admin.hajj-2027.verifications.form', ['verification' => $verification]);
     }
 
-    public function update(Request $request, Hajj2027Verification $verifikasi): RedirectResponse
+    public function update(Request $request, Hajj2027Verification $verification): RedirectResponse
     {
         $data = $this->validated($request);
-        $verifikasi->update($data);
+        $verification->update($data);
 
         return redirect()->route('admin.jemaah-2027.verifications.index')->with('success', 'Data tahap verifikasi berhasil diperbarui.');
     }
 
-    public function destroy(Hajj2027Verification $verifikasi): RedirectResponse
+    public function destroy(Hajj2027Verification $verification): RedirectResponse
     {
-        $verifikasi->delete();
+        $verification->delete();
 
         return redirect()->route('admin.jemaah-2027.verifications.index')->with('success', 'Data tahap verifikasi berhasil dihapus.');
     }

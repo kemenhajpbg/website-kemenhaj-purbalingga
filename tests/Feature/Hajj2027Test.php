@@ -232,4 +232,98 @@ class Hajj2027Test extends TestCase
             @unlink(public_path($doc->file));
         }
     }
+
+    public function test_admin_can_create_edit_update_delete_district(): void
+    {
+        $admin = $this->createAdmin();
+
+        // Create
+        $response = $this->actingAs($admin)->post('/admin/info-jemaah-2027/kecamatan', [
+            'nama_kecamatan' => 'Karangmoncol',
+            'jumlah_jemaah' => 25,
+            'urutan' => 19,
+            'aktif' => true,
+        ]);
+
+        $response->assertRedirect(route('admin.jemaah-2027.districts.index'));
+        $district = Hajj2027District::query()->where('nama_kecamatan', 'Karangmoncol')->first();
+        $this->assertNotNull($district);
+        $this->assertEquals(25, $district->jumlah_jemaah);
+
+        // Edit page
+        $editResponse = $this->actingAs($admin)->get("/admin/info-jemaah-2027/kecamatan/{$district->id}/edit");
+        $editResponse->assertOk();
+        $editResponse->assertSee('Ubah Data Kecamatan');
+        $editResponse->assertSee('Karangmoncol');
+
+        // Update
+        $updateResponse = $this->actingAs($admin)->put("/admin/info-jemaah-2027/kecamatan/{$district->id}", [
+            'nama_kecamatan' => 'Karangmoncol Updated',
+            'jumlah_jemaah' => 30,
+            'urutan' => 20,
+            'aktif' => true,
+        ]);
+
+        $updateResponse->assertRedirect(route('admin.jemaah-2027.districts.index'));
+        $this->assertEquals('Karangmoncol Updated', $district->fresh()->nama_kecamatan);
+        $this->assertEquals(30, $district->fresh()->jumlah_jemaah);
+
+        // Delete
+        $deleteResponse = $this->actingAs($admin)->delete("/admin/info-jemaah-2027/kecamatan/{$district->id}");
+        $deleteResponse->assertRedirect(route('admin.jemaah-2027.districts.index'));
+        $this->assertDatabaseMissing('hajj_2027_districts', ['id' => $district->id]);
+    }
+
+    public function test_admin_can_create_edit_update_delete_verification(): void
+    {
+        $admin = $this->createAdmin();
+
+        // Create
+        $response = $this->actingAs($admin)->post('/admin/info-jemaah-2027/verifikasi', [
+            'nama_tahap' => 'Tahap Uji Coba',
+            'total' => 50,
+            'siap' => 40,
+            'ditunda' => 5,
+            'meninggal' => 2,
+            'sudah_berhaji_belum_memenuhi' => 3,
+            'keterangan' => 'Uji coba verifikasi',
+            'tanggal_update' => '2026-10-15',
+            'urutan' => 10,
+            'aktif' => true,
+        ]);
+
+        $response->assertRedirect(route('admin.jemaah-2027.verifications.index'));
+        $verification = Hajj2027Verification::query()->where('nama_tahap', 'Tahap Uji Coba')->first();
+        $this->assertNotNull($verification);
+        $this->assertEquals(50, $verification->total);
+
+        // Edit page
+        $editResponse = $this->actingAs($admin)->get("/admin/info-jemaah-2027/verifikasi/{$verification->id}/edit");
+        $editResponse->assertOk();
+        $editResponse->assertSee('Ubah Data Verifikasi');
+        $editResponse->assertSee('Tahap Uji Coba');
+
+        // Update
+        $updateResponse = $this->actingAs($admin)->put("/admin/info-jemaah-2027/verifikasi/{$verification->id}", [
+            'nama_tahap' => 'Tahap Uji Coba Final',
+            'total' => 60,
+            'siap' => 50,
+            'ditunda' => 5,
+            'meninggal' => 2,
+            'sudah_berhaji_belum_memenuhi' => 3,
+            'keterangan' => 'Uji coba verifikasi final',
+            'tanggal_update' => '2026-10-15',
+            'urutan' => 10,
+            'aktif' => true,
+        ]);
+
+        $updateResponse->assertRedirect(route('admin.jemaah-2027.verifications.index'));
+        $this->assertEquals('Tahap Uji Coba Final', $verification->fresh()->nama_tahap);
+        $this->assertEquals(60, $verification->fresh()->total);
+
+        // Delete
+        $deleteResponse = $this->actingAs($admin)->delete("/admin/info-jemaah-2027/verifikasi/{$verification->id}");
+        $deleteResponse->assertRedirect(route('admin.jemaah-2027.verifications.index'));
+        $this->assertDatabaseMissing('hajj_2027_verifications', ['id' => $verification->id]);
+    }
 }
